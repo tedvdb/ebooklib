@@ -1,0 +1,26 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'EbookController@list');
+    Route::get('/download/{id}', 'EbookController@download')->name('download');
+    Route::get('/downloadcart/', 'EbookController@downloadCart')->name('downloadcart');
+    Route::get('/addToCart/{bookid}', 'EbookController@addToCart')->name('addtocart');
+    Route::get('/removeFromCart/{bookid}', 'EbookController@removeFromCart')->name('removetocart');
+
+    Route::group(['middleware' => 'role:admin'],function () {
+        Route::get('/admin/reindex', 'AdminController@reindex')->name('reindex');
+        Route::get('/admin', 'AdminController@index')->name('admin');
+    });
+});
