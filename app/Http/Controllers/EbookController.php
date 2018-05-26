@@ -44,8 +44,9 @@ class EbookController extends Controller
         $cart = $request->session()->get('cart');
         if(!in_array($bookid,$cart)) {
             $request->session()->push('cart',$bookid);
+            return $ebook->toArray();
         }
-        return $ebook->toArray();
+        return;
     }
 
     public function removeFromCart(Request $request, $bookid) {
@@ -59,7 +60,7 @@ class EbookController extends Controller
             }
         }
         $request->session()->put('cart',$cart);
-        return $this->getCartContent($request);
+        return;
     }
 
     private function getCartContent(Request $r) {
@@ -69,7 +70,6 @@ class EbookController extends Controller
         foreach($booksids as $booksid) {
             $currentcartbooks[] = Ebook::select('id','creator','title')->where(['id'=>$booksid])->first()->toArray();
         }
-
         return $currentcartbooks;
     }
 }

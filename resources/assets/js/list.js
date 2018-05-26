@@ -37,7 +37,9 @@ const app = new Vue({
     methods: {
         async addToCart(bookid) {
             const { data } = await axios.get('/addToCart/'+bookid);
-            this.$store.commit('ADD_BOOK', data);
+            if(typeof data.id !== "undefined") {
+                this.$store.commit('ADD_BOOK', data);
+            }
         }
     }
 });
