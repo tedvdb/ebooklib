@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ebook;
 use Illuminate\Http\Request;
+use ZipStream\ZipStream;
 
 class EbookController extends Controller
 {
@@ -71,5 +72,20 @@ class EbookController extends Controller
             $currentcartbooks[] = Ebook::select('id','creator','title')->where(['id'=>$booksid])->first()->toArray();
         }
         return $currentcartbooks;
+    }
+
+    public function downloadCart(Request $request) {
+        if(!$request->session()->has('cart') || count($request->session()->get('cart')) == 0) {
+            return redirect('home')->with('successtatus','No books in cart.');
+        }
+
+        $zip = new ZipStream('ebooks'.time().'.zip');
+        $cart = $request->session()->get('cart');
+        foreach($cart as $key => $bookid) {
+            $ebook = Ebook::find($bookid);
+            $zip->addFileFromPath(basename($ebook->path), $ebook->path);
+        }
+        $zip->finish();
+
     }
 }

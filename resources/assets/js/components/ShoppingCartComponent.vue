@@ -7,7 +7,6 @@
                <span class="glyphicon glyphicon-remove" aria-hidden="true" v-on:click="removeFromCart(shoppingcartbook)"></span>
            </li>
         </ul>
-        <a href="#">Download all</a>
     </div>
 </template>
 

@@ -5,6 +5,11 @@
         <div class="row clearfix">
             <div class="col-lg-3">
                 <shoppingcart-component></shoppingcart-component>
+
+                <a href="{{ route('downloadcart') }}" class="pull-right btn btn-primary">
+                    <span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                    Download all
+                </a>
             </div>
             <div class="col-lg-9">
                 <form method="get">

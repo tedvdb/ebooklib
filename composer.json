@@ -15,6 +15,7 @@
         "laravel/framework": "5.5.*",
         "laravel/scout": "^4.0",
         "laravel/tinker": "~1.0",
+        "maennchen/zipstream-php": "^0.5.2",
         "yab/laravel-scout-mysql-driver": "^2.0"
     },
     "require-dev": {
