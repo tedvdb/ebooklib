@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container list">
+    <div class="container list" xmlns:v-on="http://www.w3.org/1999/xhtml">
         <div class="row clearfix">
             <div class="col-lg-3">
-                <shoppingcart-component :cart-data="{{ json_encode($cartbooks) }}"></shoppingcart-component>
+                <shoppingcart-component></shoppingcart-component>
             </div>
             <div class="col-lg-9">
                 <form method="get">
@@ -29,7 +29,7 @@
                    @foreach ($ebooks as $ebook)
                     <tr>
                         <td>
-                            <a v-on:click="addToCart({{$ebook->id}})" :bookid="{{$ebook->id}}" class="addtocart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                            <a v-on:click="addToCart({{$ebook->id}})" class="addtocart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                             <a href="{{route('download', ['id' => $ebook->id])}}"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
                         </td>
                         <td>{{$ebook['title']}}</td>
@@ -43,5 +43,8 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        window.currentShoppingCart = {!! json_encode($cartbooks) !!};
+    </script>
     <script src="{{ asset('js/list.js') }}"></script>
 @endsection

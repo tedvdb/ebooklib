@@ -4,7 +4,7 @@
         <ul>
            <li v-for="shoppingcartbook in shoppingcartbooks">
                {{ shoppingcartbook.creator }} - {{ shoppingcartbook.title }}
-               <span class="glyphicon glyphicon-remove" aria-hidden="true" @click="removeFromCart(shoppingcartbook)"></span>
+               <span class="glyphicon glyphicon-remove" aria-hidden="true" v-on:click="removeFromCart(shoppingcartbook)"></span>
            </li>
         </ul>
         <a href="#">Download all</a>
@@ -13,43 +13,16 @@
 
 <script>
     export default {
-        props: ['cartData'],
-        /*mounted() {
-            eventHub.$on('update:shoppingcartbooks', function(data) {
-                console.log('newcartcontent');
-                console.log(this);
-                console.log(data);
-            });
-        },*/
-        mutations: {
-            REMOVE_BOOK (state, bookId) {
-                shoppingcartbooks = shoppingcartbooks.filter(book => book.id !== bookId)
-            },
-            ADD_BOOK (state, book) {
-                shoppingcartbooks.append(book);
+        computed: {
+            shoppingcartbooks () {
+                return this.$store.state.shoppingcartbooks
             }
-        },
-        data() {
-            return {
-                shoppingcartbooks: this.cartData
-            };
         },
         methods: {
-            removeFromCart({commit, state}, book) {
-                console.log(book);
-                axios.get('/removeFromCart/' + book.id)
-                    .then(function (response) {
-                        commit('REMOVE_BOOK', book.id)
-                    });
+            async removeFromCart(book) {
+                const { data } = await axios.get('/removeFromCart/'+book.id);
+                this.$store.commit('REMOVE_BOOK', book.id);
             }
         }
-         /*   removeFromCart: function(event) {
-                var bookid = $(event.target).data('bookid');
-                axios.get('/removeFromCart/'+bookid)
-                    .then(function(response) {
-                        eventHub.$emit('update:shoppingcartbooks', response.data);
-                    });
-            }
-        }*/
     }
 </script>
