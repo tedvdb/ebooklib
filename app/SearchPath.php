@@ -17,6 +17,7 @@ class SearchPath extends Model
 
         foreach ($files as $file)
         {
+            //echo "Indexing ".$file->getPathname()."\n";
             $fileinfo = new \stdClass();
             $fileinfo->indexid = $this->id;
             $fileinfo->type = $file->getExtension();
@@ -54,13 +55,17 @@ class SearchPath extends Model
                     if(count($tmp)==2) {
                         $fileinfo->title = $tmp[1];
                     }
-
                 }
 
-                Ebook::updateOrCreate(
+                $book = Ebook::updateOrCreate(
                     ["path" => $fileinfo->path],
                     (array)$fileinfo
-                )->touch();
+                );
+                $book->touch();
+
+                if(property_exists($fileinfo,'coverimagecontent')) {
+                    $book->saveCoverImage($fileinfo->coverimagecontent);
+                }
             }
         }
 

@@ -17,7 +17,6 @@ class MetaCollector
             $rootfile = (string)$xml->rootfiles[0]->rootfile[0]["full-path"];
             $rootfilexml = $zipper->getFileContent($rootfile);
             $xml = simplexml_load_string($rootfilexml);
-
             $coverid = false;
             if($xml->metadata && $xml->metadata->meta) {
                 foreach ($xml->metadata->meta as $meta) {
@@ -31,10 +30,8 @@ class MetaCollector
                 $coverinfo = $xml->manifest->xpath('*[@id="'.$coverid.'"]');
                 if(count($coverinfo)) {
                     $coverinfo = $coverinfo[0];
-                    $coverimage = $zipper->getFileContent($basepath . '/' . $coverinfo->attributes()->href);
-                    $fileinfo->cover = Storage::putFile('covers', $coverimage);
+                    $fileinfo->coverimagecontent = $zipper->getFileContent(/*$basepath . '/' .*/ $coverinfo->attributes()->href);
                 }
-                //$fileinfo->coverimage = $coverimage;
             }
             if($xml->metadata) {
                 $meta = $xml->metadata->children('dc', TRUE);

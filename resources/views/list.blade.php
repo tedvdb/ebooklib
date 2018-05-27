@@ -28,18 +28,24 @@
                         <th>Title</th>
                         <th>Creator</th>
                         <th>Filename</th>
+                        <th>&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
                    @foreach ($ebooks as $ebook)
                     <tr>
                         <td>
-                            <a v-on:click="addToCart({{$ebook->id}})" class="addtocart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-                            <a href="{{route('download', ['id' => $ebook->id])}}"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
+                            @if($ebook->hasCover())
+                                <img src="{{route('thumb',['id'=>$ebook->id])}}">
+                            @endif
                         </td>
                         <td>{{$ebook['title']}}</td>
                         <td>{{$ebook['creator']}}</td>
                         <td>{{basename($ebook['path'])}}</td>
+                        <td>
+                            <a v-on:click="addToCart({{$ebook->id}})" class="addtocart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                            <a href="{{route('download', ['id' => $ebook->id])}}"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
+                        </td>
                     </tr>
                     @endforeach
                     </tbody>

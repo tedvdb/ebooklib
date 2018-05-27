@@ -17,6 +17,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/downloadcart/', 'EbookController@downloadCart')->name('downloadcart');
     Route::get('/addToCart/{bookid}', 'EbookController@addToCart')->name('addtocart');
     Route::get('/removeFromCart/{bookid}', 'EbookController@removeFromCart')->name('removetocart');
+    Route::get('/thumbnail/{bookid}', function(Request $request, $bookid) {
+        if(Storage::exists('thumbcovers/'.$bookid)) {
+            return Storage::download('thumbcovers/'.$bookid);
+        }
+        abort(404);
+    })->name('thumb');
 
     Route::group(['middleware' => 'role:admin'],function () {
         Route::get('/admin/reindex', 'AdminController@reindex')->name('reindex');

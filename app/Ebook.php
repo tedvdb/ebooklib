@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Laravel\Scout\Searchable;
 use Spatie\ArrayToXml\ArrayToXml;
 
@@ -158,6 +160,23 @@ class Ebook extends Model
                 "xmlns:opds"=>"http://opds-spec.org/2010/catalog"
             ]
         ];
+    }
+
+    public function saveCoverImage($imagecontent) {
+        try {
+            $img = Image::make($imagecontent);
+            Storage::put('covers/' . $this->id, $imagecontent);
+            $img->resize(null, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            Storage::put('thumbcovers/' . $this->id, (string)$img->encode('jpg', 75));
+        } catch (\Intervention\Image\Exception\NotReadableException $e) {
+            echo "Invalid cover image for book ".$this->path."\n";
+        }
+    }
+
+    public function hasCover() {
+        return Storage::exists('covers/' . $this->id);
     }
 
 }

@@ -181,7 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Bican\Roles\RolesServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -232,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Zipper' => Chumper\Zipper\Zipper::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

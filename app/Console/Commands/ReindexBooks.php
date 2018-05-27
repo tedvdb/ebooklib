@@ -38,10 +38,14 @@ class ReindexBooks extends Command
      */
     public function handle()
     {
-        foreach (SearchPath::all() as $index) {
-            echo "Indexing {$index->path}...\n";
+        $indices = SearchPath::all();
+        $this->info("Started reindex...");
+        $bar = $this->output->createProgressBar(count($indices));
+        foreach ($indices as $index) {
             $index->reindex();
-            echo "Done.\n";
+            $bar->advance();
         }
+        $bar->finish();
+        $this->info("\nDone!");
     }
 }
