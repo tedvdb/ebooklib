@@ -3,6 +3,7 @@
 ```composer create-project tedvdb/ebooklib <install path>```
 - Then in the root folder, copy .env.example to .env
 - Create a mysql user and database for eBookLib and correct database settings in .env.
+- Set the APP_URL variable in the .env file.
 - Then, init the database:
 ```
 php artisan key:generate

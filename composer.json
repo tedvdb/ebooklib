@@ -1,6 +1,6 @@
 {
     "name": "tedvdb/ebooklib",
-    "description": "Ebooklib with opds support.",
+    "description": "eBookLib with OPDS Catalog 1.1 support.",
     "keywords": [
         "ebook",
         "epub",
