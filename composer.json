@@ -1,9 +1,10 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "tedvdb/ebooklib",
+    "description": "Ebooklib with opds support.",
     "keywords": [
-        "framework",
-        "laravel"
+        "ebook",
+        "epub",
+        "opds"
     ],
     "license": "MIT",
     "type": "project",
