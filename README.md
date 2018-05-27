@@ -1,11 +1,24 @@
-- copy .env.example to .env
-- correct DB settings
+#Installation
+- Get the source and dependencies to specified folder:
+```composer create-project tedvdb/ebooklib <install path>```
+- Then in the root folder, copy .env.example to .env
+- Create a mysql user and database for eBookLib and correct database settings in .env.
+- Then, init the database:
 ```
 php artisan key:generate
 php artisan migrate
 php artisan db:seed
 ```
-- Add path to ```search_paths``` table
+The installation is now complete.
+#First use
+- Add path to ```search_paths``` table (no GUI yet)
+- Start first indexing action:
 ```
 php artisan ebooks:reindex
 ```
+
+Now you can navigate in the browser to the url you've configured, and login with the default username 'admin@example.com' and the password 'secret'.
+
+The opds library is now available in the url <url>/opds.
+
+OPDS support is experimental! Authentication is not yet implemented.
