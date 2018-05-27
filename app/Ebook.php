@@ -64,7 +64,7 @@ class Ebook extends Model
             ];
         }
 
-        $xmla = new ArrayToXml($catalog, getRootElement() );
+        $xmla = new ArrayToXml($catalog, self::getRootElement() );
         return $xmla->toXml();
     }
 
@@ -100,19 +100,26 @@ class Ebook extends Model
                 'summary' => $book->description,
                 'author' => [ 'name'=>$book->creator ],
             ];
-            /*if (! empty($entry->image)) {
-                $catalog['feed']['content']['entry'][$i]['content']['link'][] = $this->formatLink('http://opds-spec.org/image', $entry->image, null, $this->getImageType($entry->image));
-            }
-            if (! empty($entry->thumbnail)) {
-                $catalog['feed']['content']['entry'][$i]['content']['link'][] = $this->formatLink('http://opds-spec.org/image/thumbnail', $entry->thumbnail, null, $this->getImageType($entry->thumbnail));
-            }*/
-            $entry['link'] = [
+
+            $entry['link'][] = [
                 '_attributes' => [
                     'rel' => 'http://opds-spec.org/acquisition',
                     'href' => route('download', ['id' => $book->id]),
                     'type' => $book->getMime()
                 ]
             ];
+
+            if($book->hasCover()){
+                $entry['link'][] = ['_attributes' => [
+                    'rel' => 'http://opds-spec.org/image',
+                    'href'=>route('thumb',['id'=>$book->id]),
+                ]];
+                $entry['link'][] = ['_attributes' => [
+                    'rel' => 'http://opds-spec.org/image/thumbnail',
+                    'href'=>route('coverimage',['id'=>$book->id]),
+                ]];
+            }
+            //dd($entry['link']);
 
             /*if (! empty($entry->issued)) {
                 $catalog['feed']['content']['entry'][$i]['content']['dc:issued'] = $entry->issued;
