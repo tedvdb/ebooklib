@@ -23,4 +23,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/admin/reindex', 'AdminController@reindex')->name('reindex');
         Route::get('/admin', 'AdminController@index')->name('admin');
     });
+
+    Route::get('/opds', function (Request $request) {
+        return response(\App\Ebook::rootCatalog(), 200)
+            ->header('Content-Type', 'text/xml');
+        // return ;
+    });
 });
