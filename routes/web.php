@@ -22,29 +22,33 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/admin/reindex', 'AdminController@reindex')->name('reindex');
         Route::get('/admin', 'AdminController@index')->name('admin');
     });
+
+    //TODO make links below with OPDS authentication
+
+    Route::get('/download/{id}', 'EbookController@download')->name('download');
+    Route::get('/opds', function (Request $request) {
+        return response(\App\Ebook::rootCatalog(), 200)
+            ->header('Content-Type', 'text/xml')->header('Content-disposition', 'filename="root.xml"');
+    })->name('opdsroot');
+
+    Route::get('/opds/category/{category}.xml', function (Request $request, $category) {
+        return response(\App\Ebook::catalog($category), 200)
+            ->header('Content-Type', 'text/xml');
+    })->name('category');
+
+    Route::get('/thumbnail/{bookid}', function(Request $request, $bookid) {
+        if(Storage::exists('thumbcovers/'.$bookid)) {
+            return Storage::download('thumbcovers/'.$bookid);
+        }
+        abort(404);
+    })->name('thumb');
+
+    Route::get('/coverimage/{bookid}', function(Request $request, $bookid) {
+        if(Storage::exists('covers/'.$bookid)) {
+            return Storage::download('covers/'.$bookid);
+        }
+        abort(404);
+    })->name('coverimage');
+
+
 });
-
-Route::get('/download/{id}', 'EbookController@download')->name('download');
-Route::get('/opds', function (Request $request) {
-    return response(\App\Ebook::rootCatalog(), 200)
-        ->header('Content-Type', 'text/xml')->header('Content-disposition', 'filename="root.xml"');
-})->name('opdsroot');
-
-Route::get('/opds/category/{category}.xml', function (Request $request, $category) {
-    return response(\App\Ebook::catalog($category), 200)
-        ->header('Content-Type', 'text/xml');
-})->name('category');
-
-Route::get('/thumbnail/{bookid}', function(Request $request, $bookid) {
-    if(Storage::exists('thumbcovers/'.$bookid)) {
-        return Storage::download('thumbcovers/'.$bookid);
-    }
-    abort(404);
-})->name('thumb');
-
-Route::get('/coverimage/{bookid}', function(Request $request, $bookid) {
-    if(Storage::exists('covers/'.$bookid)) {
-        return Storage::download('covers/'.$bookid);
-    }
-    abort(404);
-})->name('coverimage');
