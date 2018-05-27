@@ -26,7 +26,8 @@ class MakeEbooks extends Migration
             $table->string("publisher")->nullable();
             $table->bigInteger("mtime");
             $table->bigInteger("size");
-            $table->binary("coverimage")->nullable();
+            $table->string("cover")->nullable();
+            $table->string("coverthumb")->nullable();
             $table->timestamps();
         });
     }

@@ -31,6 +31,6 @@ class AdminController extends Controller
                 $index->reindex();
             }
         }
-        return redirect("/");
+        return redirect("/")->with("successtatus","Indexing complete.");
     }
 }
