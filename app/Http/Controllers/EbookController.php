@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ebook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use ZipStream\ZipStream;
 
 class EbookController extends Controller
@@ -86,6 +87,19 @@ class EbookController extends Controller
             $zip->addFileFromPath(basename($ebook->path), $ebook->path);
         }
         $zip->finish();
+    }
 
+    public function downloadCover($bookid) {
+        if(Storage::exists('covers/'.$bookid)) {
+            return Storage::download('covers/'.$bookid);
+        }
+        abort(404);
+    }
+
+    public function downloadCoverThumb($bookid) {
+        if (Storage::exists('thumbcovers/' . $bookid)) {
+            return Storage::download('thumbcovers/' . $bookid);
+        }
+        abort(404);
     }
 }

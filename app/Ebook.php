@@ -52,7 +52,7 @@ class Ebook extends Model
                 'link' => [
                     '_attributes'=> [
                         'rel' => 'subsection',
-                        'href' =>  route('category', ['category' => str_slug($category)]),
+                        'href' =>  route('opdscategory', ['category' => str_slug($category)]),
                         'type'=>'application/atom+xml;profile=opds-catalog;kind=acquisition'
                     ]
                 ],
@@ -81,7 +81,7 @@ class Ebook extends Model
             'link' => [
                         [ '_attributes' => [
                             'rel' => 'self',
-                            'href' => route('category', ['category' => str_slug($category)]),
+                            'href' => route('opdscategory', ['category' => str_slug($category)]),
                             'type' => 'application/atom+xml;profile=opds-catalog;kind=acquisition']
                         ],
                         [ '_attributes' => ['rel' => 'up', 'href' =>  route('opdsroot')]],
@@ -104,7 +104,7 @@ class Ebook extends Model
             $entry['link'][] = [
                 '_attributes' => [
                     'rel' => 'http://opds-spec.org/acquisition',
-                    'href' => route('download', ['id' => $book->id]),
+                    'href' => route('opdsdownload', ['id' => $book->id]),
                     'type' => $book->getMime()
                 ]
             ];
@@ -112,11 +112,11 @@ class Ebook extends Model
             if($book->hasCover()){
                 $entry['link'][] = ['_attributes' => [
                     'rel' => 'http://opds-spec.org/image',
-                    'href'=>route('thumb',['id'=>$book->id]),
+                    'href'=>route('opdsthumb',['id'=>$book->id]),
                 ]];
                 $entry['link'][] = ['_attributes' => [
                     'rel' => 'http://opds-spec.org/image/thumbnail',
-                    'href'=>route('coverimage',['id'=>$book->id]),
+                    'href'=>route('opdscoverimage',['id'=>$book->id]),
                 ]];
             }
             //dd($entry['link']);
@@ -136,6 +136,7 @@ class Ebook extends Model
 
 
     }
+
 
     private static function getCategoryFromSlug($slug) {
         if($slug==self::CAT_UNKNOWN) return '';
