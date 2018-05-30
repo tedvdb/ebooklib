@@ -4,6 +4,7 @@
 - Then in the root folder, copy .env.example to .env
 - Create a mysql user and database for eBookLib and correct database settings in .env.
 - Set the APP_URL variable in the .env file.
+- Make sure the webservice (or php process in case of php-fpm) has write permissions to the ```/storage``` folder.
 - Then, init the database:
 ```
 php artisan key:generate
