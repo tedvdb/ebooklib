@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Choccybiccy\Mobi\Header\ExthHeader;
+use Choccybiccy\Mobi\Reader;
 use Illuminate\Support\Facades\Storage;
 
 class MetaCollector
@@ -46,6 +48,25 @@ class MetaCollector
             //TODO nette foutafhandeling
             //dd($e);
             //die("Error parsing epub:".$e->getMessage());
+            return false;
+        }
+        return $fileinfo;
+
+    }
+    public static function appendMobiMeta(&$fileinfo)
+    {
+        try {
+            $mobi = new Reader($fileinfo->path);
+
+            $fileinfo->title = $mobi->getTitle();
+            $fileinfo->creator = $mobi->getAuthor();
+            $exth = $mobi->getExthHeader();
+            try { $fileinfo->lang = $exth->getRecordByType(ExthHeader::TYPE_LANGUAGE); } catch (\Exception $e) {};
+            try { $fileinfo->subject = $exth->getRecordByType(ExthHeader::TYPE_SUBJECT); } catch (\Exception $e) {};
+            try { $fileinfo->description = $exth->getRecordByType(ExthHeader::TYPE_DESCRIPTION); } catch (\Exception $e) {};
+            try { $fileinfo->publisher = $exth->getRecordByType(ExthHeader::TYPE_PUBLISHER); } catch (\Exception $e) {};
+        } catch (\Exception $e) {
+            //TODO nette foutafhandeling
             return false;
         }
         return $fileinfo;

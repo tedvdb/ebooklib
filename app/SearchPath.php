@@ -35,6 +35,9 @@ class SearchPath extends Model
                 case 'epub':
                     MetaCollector::appendEpubMeta($fileinfo);
                     break;
+                case 'mobi':
+                    MetaCollector::appendMobiMeta($fileinfo);
+                    break;
                 default: // ignore other extensions
                     $fileinfo = false;
             }
@@ -42,7 +45,7 @@ class SearchPath extends Model
             if($fileinfo) {
                 if(!property_exists($fileinfo,"creator")) {
                     $fileinfo->creator = "?";
-                    $tmp = $file->getFileName();
+                    $tmp = $file->getBasename('.'.$file->getExtension());
                     $tmp = explode(' - ',$tmp, 2);
                     if(count($tmp)==2) {
                         $fileinfo->creator = $tmp[0];
@@ -50,7 +53,7 @@ class SearchPath extends Model
                 }
                 if(!property_exists($fileinfo,"title")) {
                     $fileinfo->title = "?";
-                    $tmp = $file->getFileName();
+                    $tmp = $file->getBasename('.'.$file->getExtension());
                     $tmp = explode(' - ',$tmp, 2);
                     if(count($tmp)==2) {
                         $fileinfo->title = $tmp[1];

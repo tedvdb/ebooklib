@@ -20,6 +20,9 @@ php artisan ebooks:reindex
 
 Now you can navigate in the browser to the url you've configured, and login with the default username 'admin@example.com' and the password 'secret'.
 
+# Filetypes
+Currently only .epub and .mobi files are supported.
+
 # OPDS
 The library is now available in the url via OPDS1.1 protocol on ```<url>/opds/```.
 OPDS support is experimental! Anly basic authentication is implemented.
