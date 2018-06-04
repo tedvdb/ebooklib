@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Bican\Roles\Traits\HasRoleAndPermission;
-use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 use Illuminate\Support\Str;
+use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 
-class User extends Authenticatable implements HasRoleAndPermissionContract
+class User extends Authenticatable
 {
     use Notifiable;
     use HasRoleAndPermission;

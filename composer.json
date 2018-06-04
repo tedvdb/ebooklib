@@ -23,11 +23,12 @@
     },
     "require": {
         "php": ">=7.0.0",
-        "bican/roles": "2.1.*",
         "choccybiccy/mobi": "^0.1.2",
         "chumper/zipper": "1.0.x",
         "fideloper/proxy": "~3.3",
         "intervention/image": "^2.4",
+        "jeremykenedy/laravel-roles": "^1.2",
+        "jeremykenedy/laravel-users": "2.0.2",
         "laravel/framework": "5.5.*",
         "laravel/scout": "^4.0",
         "maennchen/zipstream-php": "^0.5.2",

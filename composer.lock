@@ -4,54 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a3a7c41bb17524cf4c0125b3666be1e2",
-    "content-hash": "0548b38db5eb001db8dba2277bdf165e",
+    "hash": "f3676044a27ad802425f66f06e0b9a61",
+    "content-hash": "893658c4af9f6944460253548eddaef6",
     "packages": [
-        {
-            "name": "bican/roles",
-            "version": "2.1.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/romanbican/roles.git",
-                "reference": "582349795ef0af9ff1a64bb2c1b884bbd5ab7c98"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/romanbican/roles/zipball/582349795ef0af9ff1a64bb2c1b884bbd5ab7c98",
-                "reference": "582349795ef0af9ff1a64bb2c1b884bbd5ab7c98",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0",
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Bican\\Roles": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Roman Bičan",
-                    "email": "romanbican@seznam.cz"
-                }
-            ],
-            "description": "Powerful package for handling roles and permissions in Laravel 5.",
-            "keywords": [
-                "acl",
-                "auth",
-                "illuminate",
-                "laravel",
-                "permissions",
-                "roles"
-            ],
-            "time": "2015-07-30 10:00:12"
-        },
         {
             "name": "choccybiccy/mobi",
             "version": "0.1.2",
@@ -568,6 +523,114 @@
             "time": "2018-05-29 14:19:03"
         },
         {
+            "name": "jeremykenedy/laravel-roles",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeremykenedy/laravel-roles.git",
+                "reference": "eaf5443d45f8844f6054d503bab8088ed37b6cdb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeremykenedy/laravel-roles/zipball/eaf5443d45f8844f6054d503bab8088ed37b6cdb",
+                "reference": "eaf5443d45f8844f6054d503bab8088ed37b6cdb",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.3.*|5.4.*|5.5.*|5.6.*",
+                "php": ">=5.6.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "jeremykenedy\\LaravelRoles\\RolesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "jeremykenedy\\LaravelRoles\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Bičan",
+                    "email": "romanbican@seznam.cz"
+                },
+                {
+                    "name": "Jeremy Kenedy",
+                    "email": "jeremykenedy@gmail.com"
+                },
+                {
+                    "name": "Ultraware"
+                }
+            ],
+            "description": "Powerful package for handling roles and permissions in Laravel. Supports Laravel 5.3, 5.4, and 5.5",
+            "keywords": [
+                "acl",
+                "laravel",
+                "levels",
+                "permissions",
+                "roles"
+            ],
+            "time": "2018-02-25 18:37:47"
+        },
+        {
+            "name": "jeremykenedy/laravel-users",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeremykenedy/laravel-users.git",
+                "reference": "bb4ecc94a43c4f2a0911b1bcf2ea126dc8f4970b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeremykenedy/laravel-users/zipball/bb4ecc94a43c4f2a0911b1bcf2ea126dc8f4970b",
+                "reference": "bb4ecc94a43c4f2a0911b1bcf2ea126dc8f4970b",
+                "shasum": ""
+            },
+            "require": {
+                "laravelcollective/html": "^5.4.0|^5.5.0",
+                "php": ">=7.0.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "jeremykenedy\\laravelusers\\LaravelUsersServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "jeremykenedy\\laravelusers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jeremykenedy",
+                    "email": "jeremykenedy@gmail.com"
+                }
+            ],
+            "description": "Laravel Users Management CRUD Package",
+            "keywords": [
+                "Users",
+                "crud",
+                "laravel",
+                "management"
+            ],
+            "time": "2018-02-11 00:59:10"
+        },
+        {
             "name": "laravel/framework",
             "version": "v5.5.40",
             "source": {
@@ -765,6 +828,74 @@
                 "search"
             ],
             "time": "2018-05-24 13:35:34"
+        },
+        {
+            "name": "laravelcollective/html",
+            "version": "v5.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "04c596a69975b901f2223eb6eb4adf55354121c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/04c596a69975b901f2223eb6eb4adf55354121c2",
+                "reference": "04c596a69975b901f2223eb6eb4adf55354121c2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "5.5.*",
+                "illuminate/routing": "5.5.*",
+                "illuminate/session": "5.5.*",
+                "illuminate/support": "5.5.*",
+                "illuminate/view": "5.5.*",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "illuminate/database": "5.5.*",
+                "mockery/mockery": "~0.9.4",
+                "phpunit/phpunit": "~5.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.5-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Collective\\Html\\HtmlServiceProvider"
+                    ],
+                    "aliases": {
+                        "Form": "Collective\\Html\\FormFacade",
+                        "Html": "Collective\\Html\\HtmlFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "https://laravelcollective.com",
+            "time": "2018-03-24 00:39:21"
         },
         {
             "name": "league/flysystem",

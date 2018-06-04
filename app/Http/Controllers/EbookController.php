@@ -70,7 +70,10 @@ class EbookController extends Controller
         $currentcartbooks = [];
         $booksids = session('cart');
         foreach($booksids as $booksid) {
-            $currentcartbooks[] = Ebook::select('id','creator','title')->where(['id'=>$booksid])->first()->toArray();
+            $book = Ebook::select('id','creator','title')->where(['id'=>$booksid])->first();
+            if($book) {
+                $currentcartbooks[] = $book->toArray();
+            }
         }
         return $currentcartbooks;
     }

@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => 'role:admin'], function () {
         Route::get('/admin/reindex', 'AdminController@reindex')->name('reindex');
-        Route::get('/admin', 'AdminController@index')->name('admin');
+        Route::get('/dashboard', 'AdminController@index')->name('dashboard');
     });
 
     //TODO make links below with OPDS authentication
