@@ -42,7 +42,7 @@ class ReindexBooks extends Command
         $this->info("Started reindex...");
         $bar = $this->output->createProgressBar(count($indices));
         foreach ($indices as $index) {
-            $index->reindex();
+            $index->reindex($this);
             $bar->advance();
         }
         $bar->finish();
